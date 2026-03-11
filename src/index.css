@@ -1,0 +1,234 @@
+/* ── Reset & Base ───────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  background: #f8fafc;
+  color: #1e293b;
+  line-height: 1.6;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ── Navbar ─────────────────────────────────────────────────────────── */
+.navbar {
+  background: #065a82;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+.navbar-logo { color: #fff; font-size: 1.2rem; font-weight: 700; }
+.navbar-logo span { color: #02c39a; }
+.navbar-links { display: flex; gap: 1.5rem; }
+.navbar-links a { color: #b8d8e8; font-size: 0.95rem; transition: color 0.2s; }
+.navbar-links a:hover { color: #fff; }
+
+/* ── Hero ────────────────────────────────────────────────────────────── */
+.hero {
+  background: linear-gradient(135deg, #021b2c 0%, #065a82 100%);
+  color: #fff;
+  text-align: center;
+  padding: 3.5rem 1rem 2.5rem;
+}
+.hero h1 { font-size: clamp(1.6rem, 5vw, 2.6rem); font-weight: 800; margin-bottom: 0.75rem; }
+.hero h1 span { color: #02c39a; }
+.hero p { font-size: 1.05rem; color: #b8d8e8; max-width: 540px; margin: 0 auto; }
+
+/* ── Tool Card ───────────────────────────────────────────────────────── */
+.tool-container {
+  max-width: 640px;
+  margin: -1.5rem auto 2rem;
+  background: #fff;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(6,90,130,0.12);
+}
+
+/* ── Drop Zone ───────────────────────────────────────────────────────── */
+.dropzone {
+  border: 2.5px dashed #1c7293;
+  border-radius: 12px;
+  padding: 2.5rem 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+  background: #f0f8ff;
+}
+.dropzone:hover, .dropzone.active { background: #e0f3ff; border-color: #02c39a; }
+.dropzone-icon { font-size: 2.8rem; margin-bottom: 0.5rem; }
+.dropzone p { color: #475569; font-size: 0.95rem; }
+.dropzone p strong { color: #065a82; }
+.dropzone input { display: none; }
+
+.file-selected {
+  margin-top: 1rem;
+  padding: 0.6rem 1rem;
+  background: #e0f3ff;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: #065a82;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* ── Size Selector ───────────────────────────────────────────────────── */
+.size-selector { margin-top: 1.5rem; }
+.size-selector label { font-weight: 600; display: block; margin-bottom: 0.6rem; color: #334155; }
+.size-options { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+.size-btn {
+  flex: 1;
+  min-width: 90px;
+  padding: 0.65rem 0.5rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #475569;
+  transition: all 0.2s;
+  text-align: center;
+}
+.size-btn:hover { border-color: #1c7293; color: #1c7293; }
+.size-btn.selected { border-color: #065a82; background: #065a82; color: #fff; }
+
+/* ── Submit Button ───────────────────────────────────────────────────── */
+.compress-btn {
+  display: block;
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: 0.9rem;
+  background: #02c39a;
+  color: #021b2c;
+  font-size: 1.05rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+.compress-btn:hover:not(:disabled) { background: #019d7c; transform: translateY(-1px); }
+.compress-btn:disabled { background: #94a3b8; cursor: not-allowed; }
+
+/* ── Status Messages ─────────────────────────────────────────────────── */
+.status-box {
+  margin-top: 1.2rem;
+  padding: 0.9rem 1rem;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+.status-box.loading { background: #e0f3ff; color: #065a82; }
+.status-box.success { background: #d1fae5; color: #065a82; }
+.status-box.error   { background: #fee2e2; color: #991b1b; }
+
+.spinner {
+  display: inline-block;
+  width: 16px; height: 16px;
+  border: 2px solid #065a82;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  vertical-align: middle;
+  margin-right: 0.5rem;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Trust badges ────────────────────────────────────────────────────── */
+.trust-badges {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin: 1.5rem auto 2.5rem;
+  max-width: 640px;
+  padding: 0 1rem;
+}
+.badge {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.88rem;
+  color: #475569;
+}
+.badge-icon { font-size: 1.1rem; }
+
+/* ── Blog Section ────────────────────────────────────────────────────── */
+.section-title {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #065a82;
+  margin: 2.5rem 0 1.5rem;
+}
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+  max-width: 960px;
+  margin: 0 auto 3rem;
+  padding: 0 1rem;
+}
+.blog-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.4rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  border-top: 3px solid #065a82;
+}
+.blog-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.1); }
+.blog-card h3 { font-size: 1.0rem; color: #065a82; margin-bottom: 0.5rem; }
+.blog-card p  { font-size: 0.88rem; color: #64748b; line-height: 1.5; }
+
+/* ── Blog Post Page ──────────────────────────────────────────────────── */
+.blog-post {
+  max-width: 720px;
+  margin: 2rem auto 4rem;
+  padding: 0 1rem;
+}
+.blog-post h1 { font-size: clamp(1.4rem, 4vw, 2rem); color: #065a82; margin-bottom: 1rem; }
+.blog-post h2 { font-size: 1.2rem; color: #1c7293; margin: 1.5rem 0 0.5rem; }
+.blog-post p  { color: #334155; margin-bottom: 1rem; }
+.blog-post .cta-box {
+  background: linear-gradient(135deg, #065a82, #1c7293);
+  color: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  margin: 2rem 0;
+}
+.blog-post .cta-box a {
+  display: inline-block;
+  margin-top: 0.75rem;
+  padding: 0.65rem 1.5rem;
+  background: #02c39a;
+  color: #021b2c;
+  font-weight: 700;
+  border-radius: 8px;
+}
+
+/* ── Footer ──────────────────────────────────────────────────────────── */
+.footer {
+  background: #021b2c;
+  color: #64748b;
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 0.88rem;
+}
+.footer a { color: #1c7293; margin: 0 0.5rem; }
+.footer a:hover { color: #02c39a; }
+
+/* ── Responsive ──────────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .tool-container { margin: -1rem 0.75rem 2rem; padding: 1.25rem; }
+  .size-btn { font-size: 0.85rem; }
+}
